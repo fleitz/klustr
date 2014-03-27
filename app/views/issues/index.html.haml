@@ -1,0 +1,13 @@
+
+= link_to 'Create new Issue', new_issue_path, class: 'btn btn-large btn-primary'
+
+%h1 Issues to vote on
+%ul.list-unstyled
+  - @issues.each do |issue|
+    %li
+      %h2
+        =link_to issue.title, issue
+      //= link_to 'Edit', edit_issue_path(issue)
+
+%br
+

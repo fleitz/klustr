@@ -1,0 +1,21 @@
+%h1
+  = @issue.title
+%h2 Votes
+- @issue.votes.each do |vote|
+  %p
+    = link_to vote.user.name, vote.user
+    voted
+    = vote.option
+    = time_ago_in_words vote.created_at
+    ago
+%h2 Cast your vote!
+- @issue.options.each do |option|
+  = simple_form_for(@vote) do |f|
+    = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+    = f.input :option, as: :hidden, input_html: {value: option}
+    = f.input :issue_id, as: :hidden, input_html: {value: @issue.id}
+    .form-actions
+      = f.button :submit, option
+
+= link_to 'Edit', edit_issue_path(@issue)
+

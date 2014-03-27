@@ -1,0 +1,11 @@
+= simple_form_for(@issue) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.input :user_id, as: 'hidden'
+    = f.input_field :option_1, value: @issue.options[0]
+    = f.input_field :option_2, value: @issue.options[1]
+
+  .form-actions
+    = f.button :submit, "Create Issue",class: 'btn-primary'
